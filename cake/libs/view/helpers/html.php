@@ -276,10 +276,15 @@ class HtmlHelper extends AppHelper {
  * @return string	An <a /> element.
  */
 	function link($title, $url = null, $htmlAttributes = array(), $confirmMessage = false, $escapeTitle = true) {
+		$full = false;
+		if (isset($htmlAttributes['full'])) {
+			$full = $htmlAttributes['full'];
+		}
+		
 		if ($url !== null) {
-			$url = $this->url($url);
+			$url = $this->url($url,$full);
 		} else {
-			$url = $this->url($title);
+			$url = $this->url($title,$full);
 			$title = $url;
 			$escapeTitle = false;
 		}
